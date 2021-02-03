@@ -45,13 +45,13 @@
     <table class="table" id="datatable">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" width="10%">城市</th>
-                <th scope="col" width="10%">區域</th>
-                <th scope="col" width="10%">局名</th>
-                <th scope="col" width="10%">領券量</th>
-                <th scope="col" width="10%">更新時間</th>
+                <th scope="col" width="10%">標章編號</th>
+                <th scope="col" width="10%">店名</th>
                 <th scope="col" width="10%">地址</th>
-                <th scope="col" width="10%">電話</th>
+                <th scope="col" width="10%">營業開始</th>
+                <th scope="col" width="10%">營業結束</th>
+                <th scope="col" width="10%">類別</th>
+                <th scope="col" width="30%">店家介紹</th>
             </tr>
         </thead>
         <tbody>
@@ -78,20 +78,24 @@
 
 </footer>
 <script>
-    $.getJSON("https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB")
+    const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+    const url = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB'; // origin api url
+
+    // $.getJSON("https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB")
+    $.getJSON(`${cors}${url}`)
         .done(e => {
             data = e;
             console.log(data)
             for (let i = 0; i < data.length; i++) {
                 print += `
                     <tr>
-                <th scope="row">${data[i].hsnNm}</th>
-                <td>${data[i].townNm}</td>
-                <td>${data[i].storeNm}</td>
-                <td>${data[i].total}</td>
-                <td>${data[i].updateTime}</td>
+                <th scope="row">${data[i].badge_code}</th>
+                <td>${data[i].market_name}</td>
                 <td>${data[i].addr}</td>
-                <td>${data[i].tel}</td>
+                <td>${data[i].business_hours}</td>
+                <td>${data[i].business_hurs_end}</td>
+                <td>${data[i].type}</td>
+                <td>${data[i].context}</td>
             </tr>
                     `;
             }
