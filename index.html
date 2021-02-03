@@ -6,44 +6,42 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173920868-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-173920868-3');
     </script>
 
     <meta charset="UTF-8">
-    <meta name="description" content="全國郵局振興三倍券即時庫存查詢">
+    <meta name="description" content="臺灣豬證明標章商家資料">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="張建文">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全國郵局振興三倍券即時領券量</title>
+    <title>臺灣豬證明標章商家資料</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css" />
 
     <script src="jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
 
-    <!-- 全國郵局振興三倍券即時領券量 -->
-    <!-- https://data.gov.tw/dataset/127751 -->
-    <!-- https://3000.gov.tw/hpgapi-openmap/api/getPostData -->
+    <!-- 臺灣豬證明標章商家資料 -->
+    <!-- https://data.gov.tw/dataset/136370 -->
+    <!-- https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 </head>
 
 <body>
-    <h1 class="text-center">全國郵局振興三倍券即時查詢</h1>
+    <h1 class="text-center">臺灣豬證明標章商家資料</h1>
     <table class="table" id="datatable">
         <thead class="thead-dark">
             <tr>
@@ -73,18 +71,18 @@
 
 </body>
 <footer>
-    <h3 class="text-center">全國郵局振興三倍券即時領券量</h3>
-   <div class="text-center"><a href="https://3000.gov.tw/hpgapi-openmap/swagger-ui.html;jsessionid=07fJbS9YtJdHw-eBCRg6leP5mkf14lsIHtAC-4uk.PETAX-AP-27">振興三倍券資料開放提供 Open API Service
- 1.</a></div>
+    <h3 class="text-center">臺灣豬證明標章商家資料</h3>
+    <div class="text-center"><a href="https://data.gov.tw/dataset/136370">臺灣豬證明標章商家資料</a></div>
+
+    <!-- 授權說明網址: http://data.gov.tw/license，OAS：https://data.cdc.gov.tw/doc/CDC_OpenData.yaml，本資料集編碼(resource_id)：52eb9a7d-813d-48b1-b462-384a7c84a746 -->
 
 </footer>
 <script>
-
-    $.getJSON("https://3000.gov.tw/hpgapi-openmap/api/getPostData")
+    $.getJSON("https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB")
         .done(e => {
             data = e;
+            console.log(data)
             for (let i = 0; i < data.length; i++) {
-
                 print += `
                     <tr>
                 <th scope="row">${data[i].hsnNm}</th>
@@ -96,10 +94,10 @@
                 <td>${data[i].tel}</td>
             </tr>
                     `;
-        }
-        $("tbody").html(print);
-                $('#datatable').DataTable();
-            })
+            }
+            $("tbody").html(print);
+            $('#datatable').DataTable();
+        })
         .fail(e => {
             console.log("Failed.");
         })
