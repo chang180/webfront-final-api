@@ -78,11 +78,17 @@
 
 </footer>
 <script>
-    const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
-    const url = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB'; // origin api url
+    // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+    // const url = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB'; // origin api url
 
     // $.getJSON("https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB")
-    $.getJSON(`${cors}${url}`)
+
+    // $.getJSON(`${cors}${url}`)
+    // $.getJSON('./getdata.php?' + $(this).serialize + 'callback=?', function(data) {
+    //     if (data) console.log(data);
+    // });
+
+    $.getJSON('./getdata.php')
         .done(e => {
             data = e;
             console.log(data)
