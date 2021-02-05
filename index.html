@@ -78,33 +78,53 @@
 
 </footer>
 <script>
-    const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
-    const url = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB'; // origin api url
+    // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+    // const url = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB'; // origin api url
 
     // $.getJSON("https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=tR9TIFWlvquB")
-    $.getJSON(`${cors}${url}`)
-        .done(e => {
+    // $.getJSON(`${cors}${url}`, e => {
+    $.getJSON("./curlget.php", e => {
             data = e;
             console.log(data)
             for (let i = 0; i < data.length; i++) {
                 print += `
-                    <tr>
-                <th scope="row">${data[i].badge_code}</th>
-                <td>${data[i].market_name}</td>
-                <td>${data[i].addr}</td>
-                <td>${data[i].business_hours}</td>
-                <td>${data[i].business_hurs_end}</td>
-                <td>${data[i].type}</td>
-                <td>${data[i].context}</td>
-            </tr>
-                    `;
+                            <tr>
+                        <th scope="row">${data[i].badge_code}</th>
+                        <td>${data[i].market_name}</td>
+                        <td>${data[i].addr}</td>
+                        <td>${data[i].business_hours}</td>
+                        <td>${data[i].business_hurs_end}</td>
+                        <td>${data[i].type}</td>
+                        <td>${data[i].context}</td>
+                    </tr>
+                            `;
             }
             $("tbody").html(print);
             $('#datatable').DataTable();
         })
-        .fail(e => {
-            console.log("Failed.");
-        })
+        // $.getJSON(`${cors}${url}`)
+        //     .done(e => {
+        //         data = e;
+        //         console.log(data)
+        //         for (let i = 0; i < data.length; i++) {
+        //             print += `
+        //                 <tr>
+        //             <th scope="row">${data[i].badge_code}</th>
+        //             <td>${data[i].market_name}</td>
+        //             <td>${data[i].addr}</td>
+        //             <td>${data[i].business_hours}</td>
+        //             <td>${data[i].business_hurs_end}</td>
+        //             <td>${data[i].type}</td>
+        //             <td>${data[i].context}</td>
+        //         </tr>
+        //                 `;
+        //         }
+        //         $("tbody").html(print);
+        //         $('#datatable').DataTable();
+        //     })
+        //     .fail(e => {
+        //         console.log("Failed.");
+        //     })
 </script>
 
 </html>
